@@ -5,6 +5,8 @@ import styled from "styled-components";
 import Image from "next/image";
 import { ImStarFull, ImStarEmpty } from "react-icons/im";
 import Chart from "../../components/Chart";
+import Router from "next/router";
+
 interface Comment {
   username: string;
   content: string;
@@ -113,17 +115,24 @@ const Detail = () => {
           </div>
         ))}
       </div>
+      <button
+        onClick={() => {
+          Router.push({
+            pathname: "/ProfessorRate",
+            query: { id: id },
+          });
+        }}
+      >
+        평가 하기
+      </button>
     </StyledDetail>
   );
 };
 
 const StyledDetail = styled.div`
   display: flex;
+  width: 100vw;
 
-  box-shadow: 0 12px 26px -4px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  width: 85vw;
-  height: 100vh;
   flex-direction: column;
   align-items: center;
   .profile {
@@ -191,15 +200,18 @@ const StyledDetail = styled.div`
   }
 `;
 const StyledLogo = styled.div`
-  gap: 5px;
   position: relative;
   width: 100%;
-  height: 30px;
+  height: 2.5em;
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 1.2em;
   background-color: white;
   box-shadow: 0 0px 26px 0px rgba(50, 50, 93, 0.25);
+  font-family: "S-CoreDream-3Light";
+  img {
+    margin-left: 1em;
+  }
 `;
 export default Detail;
 

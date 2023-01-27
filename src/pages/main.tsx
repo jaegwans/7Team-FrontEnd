@@ -113,8 +113,7 @@ const StyledMain = styled.div`
     font-size: 50px;
     border-bottom: 1.5px solid black;
   }
-  box-shadow: 0 12px 26px -4px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+
   width: 85vw;
   height: 100%;
   padding: 15px;

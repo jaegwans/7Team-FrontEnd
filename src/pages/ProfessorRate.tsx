@@ -10,6 +10,7 @@ const ProfessorRate = () => {
   const [teaching, setteaching] = useState(0);
   const [humanity, sethumanity] = useState(0);
   const [sensibility, setsensibility] = useState(0);
+  const router = useRouter();
 
   const onChangeScore = (e: any) => {
     const name = e.target.name;
@@ -31,7 +32,6 @@ const ProfessorRate = () => {
     console.log(commentContent);
   };
 
-  const router = useRouter();
   const { id } = router.query;
   const WriteRate = () => {
     axios
@@ -49,6 +49,8 @@ const ProfessorRate = () => {
       .catch((error) => {
         alert(error);
       });
+
+    router.push(`/detail/${id}`);
   };
 
   return (
