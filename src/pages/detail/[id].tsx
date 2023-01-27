@@ -6,7 +6,6 @@ import Image from "next/image";
 import { ImStarFull, ImStarEmpty } from "react-icons/im";
 import Chart from "../../components/Chart";
 import Router from "next/router";
-
 interface Comment {
   username: string;
   content: string;
@@ -108,7 +107,7 @@ const Detail = () => {
       </div>
 
       <div className="comment">
-        <div className="title">최근 강의평</div>
+        <div className="title">최근 강의평2</div>
         {professor?.comments.map((data, index) => (
           <div key={index}>
             {data.username} | {data.content}
@@ -137,7 +136,6 @@ const StyledDetail = styled.div`
   align-items: center;
   .profile {
     display: flex;
-
     flex-direction: row;
     align-items: center;
     width: 500px;
@@ -205,21 +203,8 @@ const StyledLogo = styled.div`
   height: 2.5em;
   display: flex;
   align-items: center;
-  font-size: 1.2em;
+  font-size: 20px;
   background-color: white;
   box-shadow: 0 0px 26px 0px rgba(50, 50, 93, 0.25);
-  font-family: "S-CoreDream-3Light";
-  img {
-    margin-left: 1em;
-  }
 `;
 export default Detail;
-
-const HeaderCss = styled.header`
-  width: 100vw;
-  padding: 0.7em 1em;
-  display: flex;
-  align-items: end;
-  box-shadow: 0 0.1rem 0.5rem lightgray;
-`;
-const SectionCss = styled.section``;
