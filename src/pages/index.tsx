@@ -1,19 +1,25 @@
 import Image from "next/image";
 import styled from "styled-components";
+import Router from "next/router";
 
 export default function Home() {
+  const SendQuery = () => {
+    Router.push({
+      pathname: "/main",
+    });
+  };
   return (
     <BackgroundCss>
       <TitleContainer>
-        <div>두근두근 교수님</div>
-        <div>평가하기</div>
+        <TitleFont>두근두근 교수님</TitleFont>
+        <TitleFont>평가하기</TitleFont>
         <ImgCss src="/star.png" alt="star" width={200} height={200} />
         <ImgCss src="/star.png" alt="star" width={150} height={150} />
         <ImgCss src="/star.png" alt="star" width={200} height={200} />
         <Image src="/gold.png" alt="gold" width={500} height={60} />
       </TitleContainer>
 
-      <div>평가하기</div>
+      <button onClick={SendQuery}>평가하기</button>
     </BackgroundCss>
   );
 }
@@ -26,23 +32,27 @@ const BackgroundCss = styled.div`
   align-items: center;
   background-image: url("./backgroundImage.jpg");
   background-size: cover;
-  padding: 20%;
-  font-family: "S-CoreDream-3Light";
-  color: green;
+  padding: 16%;
+  button {
+    font-family: "S-CoreDream-3Light";
+    color: green;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
 `;
 const TitleContainer = styled.div`
   margin-bottom: 3em;
   text-align: center;
   position: relative;
-
-  div {
-    font-size: 5em;
-    font-family: "HSBombaram";
-    color: white;
-    text-shadow: -0.03em 0 0.05em #7c927b, 0 -0.03em 0.05em #7c927b,
-      0.03em 0.02em 0.05em #7c927b, 0.03em 0 0.05em #7c927b;
-    min-width: 530px;
-  }
+`;
+const TitleFont = styled.div`
+  font-size: 5em;
+  font-family: "HSBombaram";
+  color: white;
+  text-shadow: -0.03em 0 0.05em #7c927b, 0 -0.03em 0.05em #7c927b,
+    0.03em 0.02em 0.05em #7c927b, 0.03em 0 0.05em #7c927b;
+  min-width: 530px;
 `;
 const ImgCss = styled.img`
   position: absolute;
