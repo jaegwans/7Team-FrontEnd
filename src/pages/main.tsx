@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Router, { useRouter } from 'next/router';
 import Image from 'next/image';
 
 interface IProfessor {
@@ -17,8 +18,13 @@ const department: departmentType = {
 };
 
 const Professor = ({ props }: any) => {
+    const router = useRouter();
     return (
-        <StyledProfessor>
+        <StyledProfessor
+            onClick={() => {
+                router.push(`/detail/${props.id}`);
+            }}
+        >
             <StyledImageSpan>
                 <Image
                     src={`/professor/${props.id}.png`}
