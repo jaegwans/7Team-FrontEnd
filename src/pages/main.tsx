@@ -19,12 +19,12 @@ const department: departmentType = {
 
 const Professor = ({ props }: any) => {
     const router = useRouter();
+
+    const onClickProfessor = () => {
+        router.push(`/detail/${props.id}`);
+    };
     return (
-        <StyledProfessor
-            onClick={() => {
-                router.push(`/detail/${props.id}`);
-            }}
-        >
+        <StyledProfessor onClick={onClickProfessor}>
             <StyledImageSpan>
                 <Image
                     src={`/professor/${props.id}.png`}
