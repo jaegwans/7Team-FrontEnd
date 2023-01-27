@@ -7,6 +7,7 @@ import {
     PolarRadiusAxis,
     ResponsiveContainer,
 } from 'recharts';
+//주석
 
 export default class Chart extends PureComponent {
     render() {
