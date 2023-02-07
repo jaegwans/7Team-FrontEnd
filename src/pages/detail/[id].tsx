@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import styled from "styled-components";
@@ -73,7 +73,7 @@ const Detail = () => {
   return (
     <StyledDetail>
       <StyledLogo>
-        <Image src="/professor/logo.png" width={30} height={30} alt="logo" />
+        <Image src="/professor/logo.png" width={40} height={40} alt="logo" />
         professor rate
       </StyledLogo>
       <div className="profile">
@@ -114,28 +114,31 @@ const Detail = () => {
           </div>
         ))}
       </div>
-      <button
-        onClick={() => {
-          Router.push({
-            pathname: "/ProfessorRate",
-            query: { id: id },
-          });
-        }}
-      >
-        평가 하기
-      </button>
+      <div>
+        <button
+          onClick={() => {
+            Router.push({
+              pathname: "/ProfessorRate",
+              query: { id: id },
+            });
+          }}
+        >
+          평가 하기
+        </button>
+      </div>
     </StyledDetail>
   );
 };
 
 const StyledDetail = styled.div`
   display: flex;
-  width: 100vw;
-
+  width: 851vw;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   .profile {
     display: flex;
+
     flex-direction: row;
     align-items: center;
     width: 500px;
@@ -164,6 +167,7 @@ const StyledDetail = styled.div`
     gap: 10px;
     font-size: 18px;
     width: 500px;
+    padding-bottom: 2em;
   }
   .rating {
     display: flex;
@@ -195,16 +199,26 @@ const StyledDetail = styled.div`
     justify-content: center;
     gap: 100px;
     flex-direction: row;
+    margin-bottom: 3em;
+  }
+
+  button {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    background: none;
+    margin-bottom: 3em;
+    border-radius: 0.5em;
   }
 `;
 const StyledLogo = styled.div`
-  position: relative;
-  width: 100%;
-  height: 2.5em;
+  width: 100vw;
+  height: 3em;
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 1em;
   background-color: white;
   box-shadow: 0 0px 26px 0px rgba(50, 50, 93, 0.25);
+  font-family: "S-CoreDream-3Light";
+  padding: 1.5em;
 `;
 export default Detail;
