@@ -1,10 +1,11 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { ImStarFull, ImStarEmpty } from 'react-icons/im';
 import Chart from '../../components/Chart';
+import Router from 'next/router';
 interface Comment {
     username: string;
     content: string;
@@ -74,8 +75,8 @@ const Detail = () => {
             <StyledLogo>
                 <Image
                     src="/professor/logo.png"
-                    width={30}
-                    height={30}
+                    width={40}
+                    height={40}
                     alt="logo"
                 />
                 professor rate
@@ -118,17 +119,25 @@ const Detail = () => {
                     </div>
                 ))}
             </div>
+            <div>
+                <button
+                    onClick={() => {
+                        Router.push({
+                            pathname: '/ProfessorRate',
+                            query: { id: id },
+                        });
+                    }}
+                >
+                    평가 하기
+                </button>
+            </div>
         </StyledDetail>
     );
 };
 
 const StyledDetail = styled.div`
     display: flex;
-
-    box-shadow: 0 12px 26px -4px rgba(50, 50, 93, 0.25),
-        0 8px 16px -8px rgba(0, 0, 0, 0.3),
-        0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-    width: 85vw;
+    width: 851vw;
     height: 100vh;
     flex-direction: column;
     align-items: center;
@@ -163,6 +172,7 @@ const StyledDetail = styled.div`
         gap: 10px;
         font-size: 18px;
         width: 500px;
+        padding-bottom: 2em;
     }
     .rating {
         display: flex;
@@ -194,17 +204,26 @@ const StyledDetail = styled.div`
         justify-content: center;
         gap: 100px;
         flex-direction: row;
+        margin-bottom: 3em;
+    }
+
+    button {
+        padding: 0.5em 1em;
+        font-size: 1em;
+        background: none;
+        margin-bottom: 3em;
+        border-radius: 0.5em;
     }
 `;
 const StyledLogo = styled.div`
-    gap: 5px;
-    position: relative;
-    width: 100%;
-    height: 30px;
+    width: 100vw;
+    height: 3em;
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 1em;
     background-color: white;
     box-shadow: 0 0px 26px 0px rgba(50, 50, 93, 0.25);
+    font-family: 'S-CoreDream-3Light';
+    padding: 1.5em;
 `;
 export default Detail;
