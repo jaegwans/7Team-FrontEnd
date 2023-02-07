@@ -1,16 +1,72 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const ProfessorRate = () => {
+  interface IProfessor {
+    professorName: string;
+    comments: Comment[];
+    ability: any;
+  }
+  const router = useRouter();
+  const ready = router.isReady;
+  const [professor, setProfessor] = useState<IProfessor>();
+  useEffect(() => {
+    axios
+      .get(`http://dugeun.duckdns.org/professors/${id}`)
+      .then((data) => {
+        console.log(data.data.data);
+        setProfessor(data.data.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [ready]);
+
   const [commentContent, setcommentContent] = useState("");
   const [assignmentScore, setassignmentScore] = useState(0);
   const [kindness, setkindness] = useState(0);
   const [teaching, setteaching] = useState(0);
   const [humanity, sethumanity] = useState(0);
   const [sensibility, setsensibility] = useState(0);
-  const router = useRouter();
+  // const comment = ["#ff7e7e", "#ffc07e", "#ffff76", "#8be175", "#75b6e1"];
+
+  const [assginmentColor, setassginmentColor] = useState([
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+  ]);
+  const [kindnessColor, setkindnessColor] = useState([
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+  ]);
+  const [teachingColor, setteachingColor] = useState([
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+  ]);
+  const [humanityColor, sethumanityColor] = useState([
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+  ]);
+  const [sensibilityColor, setsensibilityColor] = useState([
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+    "lightgray",
+  ]);
 
   const onChangeScore = (e: any) => {
     const name = e.target.name;
@@ -56,7 +112,7 @@ const ProfessorRate = () => {
   return (
     <>
       <FormCss>
-        <h1>교수님</h1>
+        <h1>{professor?.professorName} 교수님</h1>
         <ProgressBarContainer>
           <label htmlFor="assignment">과제량</label>
           <input
@@ -72,33 +128,68 @@ const ProfessorRate = () => {
           {/* 여기서부터 progress bar */}
           <ProgressBar>
             <ProgressbarButton
-              bg="#ff7e7e"
+              bg={assginmentColor[0]}
               onClick={() => {
                 setassignmentScore(20);
+                setassginmentColor([
+                  "#ff7e7e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffc07e"
+              bg={assginmentColor[1]}
               onClick={() => {
                 setassignmentScore(40);
+                setassginmentColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffff76"
+              bg={assginmentColor[2]}
               onClick={() => {
                 setassignmentScore(60);
+                setassginmentColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#8be175"
+              bg={assginmentColor[3]}
               onClick={() => {
                 setassignmentScore(80);
+                setassginmentColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#75b6e1"
+              bg={assginmentColor[4]}
               onClick={() => {
                 setassignmentScore(100);
+                setassginmentColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "#75b6e1",
+                ]);
               }}
             ></ProgressbarButton>
           </ProgressBar>
@@ -118,33 +209,68 @@ const ProfessorRate = () => {
           />
           <ProgressBar>
             <ProgressbarButton
-              bg="#ff7e7e"
+              bg={kindnessColor[0]}
               onClick={() => {
                 setkindness(20);
+                setkindnessColor([
+                  "#ff7e7e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffc07e"
+              bg={kindnessColor[1]}
               onClick={() => {
                 setkindness(40);
+                setkindnessColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffff76"
+              bg={kindnessColor[2]}
               onClick={() => {
                 setkindness(60);
+                setkindnessColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#8be175"
+              bg={kindnessColor[3]}
               onClick={() => {
                 setkindness(80);
+                setkindnessColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#75b6e1"
+              bg={kindnessColor[4]}
               onClick={() => {
                 setkindness(100);
+                setkindnessColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "#75b6e1",
+                ]);
               }}
             ></ProgressbarButton>
           </ProgressBar>
@@ -164,33 +290,68 @@ const ProfessorRate = () => {
           />
           <ProgressBar>
             <ProgressbarButton
-              bg="#ff7e7e"
+              bg={teachingColor[0]}
               onClick={() => {
                 setteaching(20);
+                setteachingColor([
+                  "#ff7e7e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffc07e"
+              bg={teachingColor[1]}
               onClick={() => {
                 setteaching(40);
+                setteachingColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffff76"
+              bg={teachingColor[2]}
               onClick={() => {
                 setteaching(60);
+                setteachingColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#8be175"
+              bg={teachingColor[3]}
               onClick={() => {
                 setteaching(80);
+                setteachingColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#75b6e1"
+              bg={teachingColor[4]}
               onClick={() => {
                 setteaching(100);
+                setteachingColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "#75b6e1",
+                ]);
               }}
             ></ProgressbarButton>
           </ProgressBar>
@@ -210,33 +371,68 @@ const ProfessorRate = () => {
           />
           <ProgressBar>
             <ProgressbarButton
-              bg="#ff7e7e"
+              bg={humanityColor[0]}
               onClick={() => {
                 sethumanity(20);
+                sethumanityColor([
+                  "#ff7e7e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffc07e"
+              bg={humanityColor[1]}
               onClick={() => {
                 sethumanity(40);
+                sethumanityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffff76"
+              bg={humanityColor[2]}
               onClick={() => {
                 sethumanity(60);
+                sethumanityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#8be175"
+              bg={humanityColor[3]}
               onClick={() => {
                 sethumanity(80);
+                sethumanityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#75b6e1"
+              bg={humanityColor[4]}
               onClick={() => {
                 sethumanity(100);
+                sethumanityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "#75b6e1",
+                ]);
               }}
             ></ProgressbarButton>
           </ProgressBar>
@@ -256,33 +452,68 @@ const ProfessorRate = () => {
           />
           <ProgressBar>
             <ProgressbarButton
-              bg="#ff7e7e"
+              bg={sensibilityColor[0]}
               onClick={() => {
                 setsensibility(20);
+                setsensibilityColor([
+                  "#ff7e7e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffc07e"
+              bg={sensibilityColor[1]}
               onClick={() => {
                 setsensibility(40);
+                setsensibilityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "lightgray",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#ffff76"
+              bg={sensibilityColor[2]}
               onClick={() => {
                 setsensibility(60);
+                setsensibilityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "lightgray",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#8be175"
+              bg={sensibilityColor[3]}
               onClick={() => {
                 setsensibility(80);
+                setsensibilityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "lightgray",
+                ]);
               }}
             ></ProgressbarButton>
             <ProgressbarButton
-              bg="#75b6e1"
+              bg={sensibilityColor[4]}
               onClick={() => {
                 setsensibility(100);
+                setsensibilityColor([
+                  "#ff7e7e",
+                  "#ffc07e",
+                  "#ffff76",
+                  "#8be175",
+                  "#75b6e1",
+                ]);
               }}
             ></ProgressbarButton>
           </ProgressBar>
@@ -310,6 +541,7 @@ const FormCss = styled.form`
   width: 50vw;
   h1 {
     font-weight: 100;
+    margin-top: 1em;
   }
 `;
 const ProgressBarContainer = styled.div`
@@ -321,6 +553,7 @@ const ProgressBarContainer = styled.div`
     margin-right: 3em;
     font-size: 1em;
     font-family: "S-CoreDream-3Light";
+    min-width: fit-content;
   }
   input {
     display: none;
@@ -332,10 +565,12 @@ const InputTextContainer = styled.div`
   width: 100%;
   margin-bottom: 2em;
   font-family: "S-CoreDream-3Light";
+  margin-top: 1em;
   input {
     height: 10em;
     border: none;
     box-shadow: 0.1em 0.1em 1em lightgray;
+    min-width: 610px;
   }
 `;
 const ProgressBar = styled.div`
@@ -349,7 +584,7 @@ const ProgressbarButton = styled.div<Props>`
   & {
     background-color: lightgray;
     cursor: pointer;
-    width: 5.8em;
+    width: 6.5em;
     height: 2em;
     margin: 0.1em;
     transition: background 0.5s;
@@ -360,20 +595,19 @@ const ProgressbarButton = styled.div<Props>`
   &:last-child {
     border-radius: 0em 1em 1em 0em;
   }
-  &:first-child:hover {
+  &:first-child {
     background-color: ${(Props) => Props.bg};
   }
-  &:nth-child(2):hover ~ &:nth-child(1),
-  &:nth-child(2):hover {
+  &:nth-child(2) {
     background-color: ${(Props) => Props.bg};
   }
-  &:nth-child(3):hover {
+  &:nth-child(3) {
     background-color: ${(Props) => Props.bg};
   }
-  &:nth-child(4):hover {
+  &:nth-child(4) {
     background-color: ${(Props) => Props.bg};
   }
-  &:nth-child(5):hover {
+  &:nth-child(5) {
     background-color: ${(Props) => Props.bg};
   }
 `;
