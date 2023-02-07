@@ -50,7 +50,7 @@ const Main = () => {
     useEffect(() => {
         console.log(professor);
         axios
-            .get(`http://dugeun.duckdns.org/`)
+            .get(`https://dugeun.duckdns.org/`)
             .then((data) => {
                 setProfessor(data.data.data);
                 console.log(professor);

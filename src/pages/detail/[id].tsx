@@ -59,7 +59,7 @@ const Detail = () => {
     const [professor, setProfessor] = useState<IProfessor>();
     useEffect(() => {
         axios
-            .get(`http://dugeun.duckdns.org/professors/${id}`)
+            .get(`https://dugeun.duckdns.org/professors/${id}`)
             .then((data) => {
                 console.log(data.data.data);
                 setProfessor(data.data.data);
